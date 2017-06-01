@@ -1,0 +1,40 @@
+int LSensorPin = 2; //left sensor pin
+int RSensorPin = 3; //right sensor pin
+int LSensorValue = LOW;
+int RSensorValue = LOW;
+void setup() {
+  // put your setup code here, to run once:
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
+
+int leftIR()
+{
+  pinMode(LSensorPin, OUTPUT);
+  digitalWrite(LSensorPin, HIGH);
+  delayMicroseconds(10);
+  pinMode(LSensorPin, INPUT);
+  long time = micros();
+  while (digitalRead(LSensorPin) == HIGH && micros() - time < 3000);
+  int diff = micros() - time;
+  LSensorValue = diff;
+}
+
+int rightIR()
+{
+  pinMode(RSensorPin, OUTPUT);
+  digitalWrite(RSensorPin, HIGH);
+  delayMicroseconds(10);
+  pinMode(RSensorPin, INPUT);
+  long time = micros();
+  while (digitalRead(RSensorPin) == HIGH && micros() - time < 3000);
+  int diff = micros() - time;
+  RSensorValue = diff;
+}
+
+
+
